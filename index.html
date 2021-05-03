@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Curso Angular</title>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+        crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js" ></script>
+    <script src="node_modules\angular\angular.min.js" ></script>
+    <script src="node_modules\angular-route\angular-route.min.js" ></script>
+    <link rel="shortcut icon" href="assets\favicon.ico">
+
+    <script src="curso-app.js"></script>
+    <script src="curso-routers.js"></script>
+
+    <script src="curso-service.js"></script>
+    <script src="home/home-controller.js"></script>
+    <script src="cadastro/cadastro-controller.js"></script>
+    <script src="./componente/componente-alert.js"></script>
+    
+</head>
+
+<body>
+    <img src="https://www.medmandic.com.br/wp-content/uploads/2018/08/banner_medmandic_conceito_1350x340px-1024x258.png" class="img-fluid" alt="Imagem responsiva" style="width: 100%;">
+    
+    <script>
+        angular.module('app').controller('MenuController', MenuController);
+        MenuController.$inject = ['$location'];
+            function MenuController($location) {
+                vm = this;
+                vm.itensMenu = [
+                    {titulo: 'Lista', class: 'nav-link active'},
+                    {titulo: 'Cadastro', class: 'nav-link'}
+                ]
+    
+                vm.navegar = function(rota, array) {
+                    angular.forEach(array, function(item) {
+                        if(item.titulo == rota) {
+                            item.class = 'nav-link active'
+                        } else {
+                            item.class = 'nav-link'
+                        }
+                    })
+
+                    $location.path(rota)
+                }
+            }
+    </script>
+    <div class="p-3 mb-2 bg-light text-dark">
+    <div class="container" style="margin-top: 20px;">   
+        <div ng-controller="MenuController as vm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" ng-repeat="item in vm.itensMenu">
+                    <a ng-class="item.class" ng-click="vm.navegar(item.titulo, vm.itensMenu)"><h1>{{item.titulo}}</h1></a>
+                </li>
+            </ul>
+        </div>
+        
+        <div ng-view></div>
+    </div>
+    
+</body>
+<footer class="text-center text-white fixed" style="background-color: #0a4275; margin-top: 1rem;">
+    <!-- Grid container -->
+    <div class="container p-4"></div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">Stefaniniers.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+</html>

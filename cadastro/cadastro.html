@@ -1,0 +1,22 @@
+<div class="container">
+
+  <h1>{{vm.teste}}</h1>
+  
+  <form>
+      <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input type="text" class="form-control" id="nome" ng-model="vm.paciente.nome" placeholder="Nome do paciente">
+      </div>
+      <div class="form-group">
+          <label for="rg">RG:</label>
+          <input type="text" class="form-control" id="rg" ng-model="vm.paciente.rg" placeholder="RG do paciente">
+      </div>
+      <div class="form-group">
+          <label for="exame">Exame:</label>
+          <input type="text" class="form-control" id="exame" ng-model="vm.paciente.exame" placeholder="Exame do paciente">
+      </div>
+  </form>
+  <button type="button" class="btn btn-primary" ng-click="vm.cadastrar()">{{vm.textoBotao}}</button>
+  <button type="button" class="btn btn-secondary" ng-click="vm.limpar()">Limpar</button>
+
+</div>

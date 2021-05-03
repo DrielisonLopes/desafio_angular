@@ -1,0 +1,42 @@
+<div class="container" ng-init="vm.init()">
+
+  <div class="container" ng-if="vm.error">
+      <alert-para-usuario msg="'A conexão com o banco de dados falhou!'" tipo="'erro'">
+      </alert-para-usuario>
+  </div>
+
+  <label for="exampleDataList" class="form-label">Filtro de pesquisa</label>
+  <input class="form-control" list="datalistOption" ng-model="vm.filtroPesquisa" id="exampleDataList" placeholder="filtrar">
+
+  <table class="table" ng-if="vm.pacientes">
+      <thead>
+        <tr>
+          <th scope="col">Paciente</th>
+          <th scope="col">Nome</th>
+          <th scope="col">RG</th>
+          <th scope="col">Exame</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="paciente in vm.pacientes | filter : vm.filtroPesquisa | orderBy : 'nome' ">
+          <th scope="row">{{paciente.id}}</th>
+          <td>{{paciente.nome}}</td>
+          <td>{{paciente.rg}}</td>
+          <td>{{paciente.exame}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-warning" ng-click="vm.editar(paciente.id)">
+              Editar
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" ng-click="vm.excluir(paciente.id)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+
+</div>
